@@ -8,7 +8,7 @@
     <body>
 
 
-         <form action="template.phtml" method="post">
+         <form action="index.php" method="post">
             <p> Name: <textarea name="name"></textarea></p>            
             <p><input type="submit"> </p>
          </form>
