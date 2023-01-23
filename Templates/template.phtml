@@ -10,8 +10,13 @@
     <p><b>Имя: </b><?= $name; ?> </p>
 
          <form action="" method="post">
+            <p> Author: <textarea name= "author"></textarea>  </p> 
             <p> Name: <textarea name="name"></textarea></p>            
             <p><input type="submit"> </p>
+            <?php foreach($nameList as $item){ ?>
+                <p><?= $item['author'],": ", $item['name'] ?> </P>
+            <?php } ?>
+
          </form>
         
 
