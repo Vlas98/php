@@ -1,5 +1,6 @@
 <?php    
-  
+date_default_timezone_set('Europe/Moscow');
+
 $name = $_POST['name'] ?? '';
 $author = $_POST['author'] ?? '';
 
@@ -14,7 +15,8 @@ $nameList= [];
 
 if(!empty($name) && !empty($author) )
 {
-$nameList[] = ["author" =>$author, "name" => $name];
+$data = date('jS F Y h:i:s');
+$nameList[] = ["data" => $data,"author" =>$author, "name" => $name];
 file_put_contents('list.json',json_encode($nameList));
 }
 
