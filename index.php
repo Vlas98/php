@@ -12,7 +12,7 @@ $nameList = json_decode($json, true);
 $nameList= [];
 }
 
-if(!empty($name) /*&& !empty($author) */)
+if(!empty($name) && !empty($author) )
 {
 $nameList[] = ["author" =>$author, "name" => $name];
 file_put_contents('list.json',json_encode($nameList));

@@ -14,7 +14,8 @@
             <p> Name: <textarea name="name"></textarea></p>            
             <p><input type="submit"> </p>
             <?php foreach($nameList as $item){ ?>
-                <p><?= $item['author'],": ", $item['name'] ?> </P>
+                <p><?= $item['author']?> :
+                   <?= $item['name']?> </P>
             <?php } ?>
 
          </form>
