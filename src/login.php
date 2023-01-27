@@ -23,6 +23,7 @@ if( !empty($_POST['user'])){
         $pass = $_POST['password'];
         if($login['password'] === $pass ){
             setcookie("user", $userName);
+            //include APP_PATH . '\Templates\chat.php';
         }
     }
 
@@ -31,4 +32,4 @@ if( !empty($_POST['user'])){
 
 }
 
-include APP_PATH . '/Templates/login.phtml';
+include APP_PATH . '\Templates\login.phtml';
