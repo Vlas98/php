@@ -32,12 +32,4 @@ $newComments = array_filter($nameList, function($item){
     return $division <= 5;
 });
 
-if(!empty($_COOKIE['user']) ){
-
-    include APP_PATH . "\src\logout.php";
-    
-    }else{echo 'Log In, pls';}
-
-
 include APP_PATH . "/Templates/template.phtml"; 
-//include APP_PATH . "/src/logout.php";

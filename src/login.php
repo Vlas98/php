@@ -8,7 +8,6 @@ $users = json_decode($all_users, true);
 if( !empty($_POST['user'])){
     $userName = $_POST['user'];
 
-
     // [ {login: string, password: string}, ...]
         $login = array_filter($users, function(array $creds) use ($userName): bool
         {
@@ -17,18 +16,14 @@ if( !empty($_POST['user'])){
     if(empty($login)){
         $users[] = ["login" =>$_POST['user'], "password" => $_POST['password']];
         file_put_contents($userPath, json_encode($users)); 
-        setcookie("user", $userName);
+        $authGateway->auth($userName);
     }else{
         $login= $login[0];
         $pass = $_POST['password'];
         if($login['password'] === $pass ){
-            setcookie("user", $userName);
-            //include APP_PATH . '\Templates\chat.php';
+            $authGateway->auth($userName);
         }
     }
-
-
-
 
 }
 

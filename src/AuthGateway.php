@@ -19,4 +19,11 @@ class AuthGateway{
         return (bool)$this->user;
     }
 
+    public function auth(string $name): void
+    {
+        setcookie("user", $name);
+        header('location: /');
+        die;
+    }
+    
 }
