@@ -6,7 +6,9 @@
     </head>
 
     <body>
-<p><?php include "logout.phtml" ?></p>
+    <p>I'm <?= $authGateway->getUser() ?></p>
+
+    <p><?php include "logout.phtml" ?></p>
 
     <p><b>Текст: </b><?= $name; ?> </p>
 

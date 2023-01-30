@@ -27,9 +27,25 @@ $newComments = array_filter($nameList, function($item){
     $now = strtotime(date('jS F Y h:i:s'));
 
     $different = ($now - $dataComment);
-    $division = intdiv($different, 300);
+    $division = intdiv($different, 3600);
 
     return $division <= 5;
+});
+
+//$newComments = [['25.02.2202 04:33:22', 'log', 'afalkjfk']];
+$newComments = array_filter($newComments, function(array $item) use ($authGateway) :bool
+{
+    
+    if($item['author'] === $authGateway->getUser()){
+        return true;
+    }
+
+    if(preg_match('/^@[^,]+,.+/', $item['name']) === 0){
+        return true;
+    }
+
+    $needle = '@'. $authGateway->getUser(). ',';
+    return str_starts_with($item['name'], $needle);
 });
 
 include APP_PATH . "/Templates/template.phtml"; 
