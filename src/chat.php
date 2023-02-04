@@ -1,7 +1,7 @@
 <?php    
 date_default_timezone_set('Europe/Moscow');
 
-$name = $_POST['name'] ?? '';
+$text = $_POST['text'] ?? '';
 
 $nameListPath = APP_PATH. '/src/data/list.json';
 $json = file_get_contents($nameListPath);
@@ -12,11 +12,11 @@ if(!empty($json)){
     $nameList= [];  
 }
 
-if(!empty($name))
+if(!empty($text))
 {
-    $author = $authGateway->getUser();
+    $author = $authGateway->getUser()['login'];
     $data = date('jS F Y h:i:s');
-    $nameList[] = ["data" => $data,"author" =>$author, "name" => $name];
+    $nameList[] = ["data" => $data,"author" =>$author, "text" => $text, "status" => "active"];
     file_put_contents($nameListPath,json_encode($nameList));
 }
 
@@ -36,16 +36,16 @@ $newComments = array_filter($nameList, function($item){
 $newComments = array_filter($newComments, function(array $item) use ($authGateway) :bool
 {
     
-    if($item['author'] === $authGateway->getUser()){
+    if($item['author'] === $authGateway->getUser()['login']){
         return true;
     }
 
-    if(preg_match('/^@[^,]+,.+/', $item['name']) === 0){
+    if(preg_match('/^@[^,]+,.+/', $item['text']) === 0){
         return true;
     }
 
-    $needle = '@'. $authGateway->getUser(). ',';
-    return str_starts_with($item['name'], $needle);
+    $needle = '@'. $authGateway->getUser()['login']. ',';
+    return str_starts_with($item['text'], $needle);
 });
 
 include APP_PATH . "/Templates/template.phtml"; 

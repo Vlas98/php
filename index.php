@@ -11,3 +11,4 @@ if($authGateway->isAuth()){
 }else{
     include APP_PATH . '/src/login.php';
 }
+

@@ -1,1 +1,1 @@
-[{"login":"log","password":"pas"},{"login":"asd","password":"asd"},{"login":"ne_log","password":"nelog"}]
+[{"login":"log","password":"pas","role":"admin"},{"login":"asd","password":"asd","role":"user"},{"login":"ne_log","password":"nelog","role":"user"}]

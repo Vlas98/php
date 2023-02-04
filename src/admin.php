@@ -1,0 +1,5 @@
+<?PHP
+
+if($role === 'admin'){
+
+}
