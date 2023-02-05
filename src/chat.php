@@ -1,10 +1,12 @@
 <?php    
-date_default_timezone_set('Europe/Moscow');
 
+include APP_PATH . '/src/models/MessageModel.php';
+date_default_timezone_set('Europe/Moscow');
+// перенести работу с даными( json) в messageModule.php
 $text = $_POST['text'] ?? '';
 
-$nameListPath = APP_PATH. '/src/data/list.json';
-$json = file_get_contents($nameListPath);
+$nameListPath = APP_PATH. '/src/data/list.json';//
+$json = file_get_contents($nameListPath);//
 
 if(!empty($json)){
     $nameList = json_decode($json, true);
@@ -16,8 +18,7 @@ if(!empty($text))
 {
     $author = $authGateway->getUser()['login'];
     $data = date('jS F Y h:i:s');
-    $nameList[] = ["data" => $data,"author" =>$author, "text" => $text, "status" => "active"];
-    file_put_contents($nameListPath,json_encode($nameList));
+    $messageModel->add($data, $author, $text);
 }
 
 

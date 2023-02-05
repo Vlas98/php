@@ -1,5 +1,0 @@
-<?PHP
-
-if($role === 'admin'){
-
-}

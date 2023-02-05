@@ -29,10 +29,9 @@ class AuthGateway{
     /**
      авторизовывает пользователя, сохраняя логин и роль в куки.
      */
-    public function auth(string $name, $role): void
+    public function auth(string $name): void
     {
         setcookie("user", $name);
-        setcookie("role", $role);
         header('location: /');
        die;
     }
@@ -53,5 +52,7 @@ class AuthGateway{
 
         return $this->_userModel;
     }
+
+
 
 }

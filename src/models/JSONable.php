@@ -4,7 +4,6 @@ require_once __DIR__ . '/iJSONable.php';
 
 abstract class JSONable implements iJSONable
 {
-    private array|null $_data = null;
 
     public function get(string $key = null, $value = null): array
     {
@@ -36,13 +35,9 @@ abstract class JSONable implements iJSONable
     protected function getData(): array
     {
         //  возвращает содержимое json файла или массив
-        if($this->_data === null){
             // читаем файл и записываем содержимое в переменную
             $jsonContent = file_get_contents($this->getFile());
-            $this->_data = json_decode($jsonContent, true);
-        }
-
-        return $this->_data ?? [];
+           return json_decode($jsonContent, true);
     }
 
 
