@@ -1,18 +1,20 @@
 <?php
 
-require_once __DIR__ . '/iJSONable.php';
+require_once __DIR__ . '/iJSONable.php'; //подключаем единажды класс интерфейса
 
-abstract class JSONable implements iJSONable
+abstract class JSONable implements iJSONable //создаем абстрактный класс, унаследующий iJSONable(можем обращаться только через userModel)
 {
-
-    public function get(string|Closure $key = null, $value = null): array
+        /**
+         методо получает строки или условие
+        */
+    public function get(string|Closure $key = null, $value = null): array //  key - ключ по которому ищется информация, value-значение, которое должен содержать key
     {
         //возвращает значения json  файла, которое соответсвует условию.
-        $data = $this->getData();
-        if(is_string($key) === false){
-            return $key($data);
+        $data = $this->getData(); 
+        if(is_callable($key)){  //если метод  получил "условие"
+            return $key($data); //возвращаем "условие", в которое мы отправляем $data
         }
-        
+
         return $data;
     }
 

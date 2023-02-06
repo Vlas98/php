@@ -14,7 +14,7 @@ if( !empty($_POST['user'])){
         $authGateway->auth($userName);
     }else{
         if($foundedUser['password'] === $password ){
-            $authGateway->auth($userName);
+            $authGateway->auth($userName    );
         }
     }
 

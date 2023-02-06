@@ -10,5 +10,4 @@ class MessageModel extends JSONable
         // возвращает путь к json файлу 
         return APP_PATH . '\src\data\list.json';
     }
-    
 }

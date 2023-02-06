@@ -1,5 +1,5 @@
 <?php 
 
-setcookie('user', '', -1, '/');
+setcookie('user', '', -1, '/'); // удаляем куки
 
-header('Location: /');
+header('Location: /');//обновляем страницу( переходим в корень сайта)

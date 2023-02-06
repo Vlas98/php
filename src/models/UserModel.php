@@ -1,8 +1,8 @@
 <?php
 
-require_once __DIR__ . '/JSONable.php';
+require_once __DIR__ . '/JSONable.php';// единажды подключаем класс работы с json  файлами 
 
-class UserModel extends JSONable
+class UserModel extends JSONable // копируем атрибуты  класса JSONable
 {
     
     public function getFile(): string 
