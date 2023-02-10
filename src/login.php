@@ -5,6 +5,7 @@ $userModel = new UserModel;
 if( !empty($_POST['user'])){
     $userName = $_POST['user'];
     $password = $_POST['password'];
+    $hashPassword = hash('md5',$password, false);
     
     $foundedUser = $userModel->find('login', $userName);
     
@@ -13,8 +14,8 @@ if( !empty($_POST['user'])){
         $userModel->add($newUser);
         $authGateway->auth($userName);
     }else{
-        if($foundedUser['password'] === $password ){
-            $authGateway->auth($userName    );
+        if(hash('md5', $foundedUser['password'], false) ===  $hashPassword){
+            $authGateway->auth($userName);
         }
     }
 

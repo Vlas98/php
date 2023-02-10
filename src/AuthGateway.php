@@ -1,6 +1,6 @@
 <?php 
 
-include_once APP_PATH . '/src/models/UserModel.php'; // подключаем файл класса авторизации
+include_once APP_PATH . '/src/models/UserModel.php'; // подключаем файл класса авторизации (файл для работы с юзерами)
 
 class AuthGateway{
 
@@ -8,7 +8,7 @@ class AuthGateway{
     private array|null $user = null;
     private UserModel|null $_userModel = null;
 
-    public function __construct(private array $cookie){ //конструкор класса (??) узнать про приватность массива
+    public function __construct(array $cookie){ //конструкор класса (??) узнать про приватность массива
         if(isset($cookie['user'])){ //если в куках хранится имя пользователя
             // [login=> string, password =>string...]
             $this->user = $this->getUsersModel()->find('login', $cookie['user']); //запрашиваем информацию(массив) информацтт о пользователе, отправляя имя пользователя
@@ -28,7 +28,7 @@ class AuthGateway{
     }
 
     /**
-     авторизовывает пользователя, сохраняя логин и роль в куки.
+     авторизовывает пользователя, сохраняя логин в куки.
      */
     public function auth(string $name): void
     {
@@ -45,7 +45,7 @@ class AuthGateway{
         return $this->getUser()['role'] === 'admin';
     }
  
-    private function getUsersModel(): UserModel //приватная функция, которая возвращает класс, который содержит информацию о пользователе
+    private function getUsersModel(): UserModel //приватная функция, которая возвращает класс, который содержит информацию о пользователе (пользователях)
     {
         if($this->_userModel === null){ // если есть информация о пользователе
             $this->_userModel = new UserModel; // создаем новый экземпляр класса

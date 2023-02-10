@@ -2,7 +2,7 @@
 
 require_once __DIR__ . '/iJSONable.php'; //подключаем единажды класс интерфейса
 
-abstract class JSONable implements iJSONable //создаем абстрактный класс, унаследующий iJSONable(можем обращаться только через userModel)
+abstract class JSONable implements iJSONable //создаем абстрактный класс, унаследующий (реализующий), а дальше написан бред => iJSONable(можем обращаться только через userModel)
 {
         /**
          методо получает строки или условие
@@ -11,8 +11,8 @@ abstract class JSONable implements iJSONable //создаем абстрактн
     {
         //возвращает значения json  файла, которое соответсвует условию.
         $data = $this->getData(); 
-        if(is_callable($key)){  //если метод  получил "условие"
-            return $key($data); //возвращаем "условие", в которое мы отправляем $data
+        if(is_callable($key)){  //если метод  получил "условие" (callable -> что то, что можно вызвать)
+            return $key($data); //возвращаем "условие", в которое мы отправляем $data (вызываем функцуию, котору передали первым аргументов, передав в неё данные и вернув результат функции )
         }
 
         return $data;

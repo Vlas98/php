@@ -7,7 +7,7 @@ date_default_timezone_set('Europe/Moscow'); //  задаем дату на се�
 $messageModel = new MessageModel; // создаем новый экземпляр класса модели сообщения
 
 $text = $_POST['text'] ?? '';
-if(!empty($text)) // Добавляем новое сообщение в файл
+if(!empty($text)) // Добавляем новое сообщение в файл (проверяем пришло ли сообщение вместе с запросом)
 {
     $author = $authGateway->getUser()['login'];
     $date = date('jS F Y h:i:s');
@@ -15,11 +15,9 @@ if(!empty($text)) // Добавляем новое сообщение в фай�
     $messageModel->add($newMessage);
 }
 
-$allMessage = $messageModel->get(function($messages){ // callback 
-    return $messages;
-});
-
-$newComments = array_filter($allMessage, function($item){ //выводим сообщение
+$allMessage = $messageModel->get();
+ 
+$newComments = array_filter($allMessage, function($item){ //выводим сообщение (фильтруем по дате, а не выводим)
     $dataComment = $item['date'];
     $dataStatus  = $item['status'];
     $dataComment = strtotime($dataComment);
@@ -57,5 +55,11 @@ $newComments = array_map(function($item){
     return $item;
 }, $newComments);
 
+if($authGateway->isAdmin()){
+    $newComments = array_map(function($item){
+        $item['text']; // .= "'<input type=\"submit\" id = \"  $item['id'], \" value= \"X\" method = \"POST\">";
+        return $item;
+    }, $newComments);
+}
 
 include APP_PATH . "/Templates/template.phtml"; 

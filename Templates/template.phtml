@@ -19,9 +19,9 @@
          </form>    
 
          <?php foreach($newComments as $item){ ?>
-            <p><?= $item['date']?> 
+                <label for ="id"><p><?=$item['date']?> 
                 <?= $item['author']?> :
-                <?= $item['text']?> </P>
+                <?= $item['text']?> </P></label>
         <?php } ?>
     </body>
 </html>
