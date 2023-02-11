@@ -11,13 +11,14 @@ if(!empty($text)) // Добавляем новое сообщение в фай�
 {
     $author = $authGateway->getUser()['login'];
     $date = date('jS F Y h:i:s');
-    $newMessage = ['date'=>$date, 'author'=>$author,'text'=>$text, 'status'=>'active']; 
+    $id = $messageModel->arrayCount()+1;
+    $newMessage = ['date'=>$date, 'author'=>$author,'text'=>$text, 'status'=>'active', 'id'=>$id]; 
     $messageModel->add($newMessage);
 }
 
 $allMessage = $messageModel->get();
  
-$newComments = array_filter($allMessage, function($item){ //выводим сообщение (фильтруем по дате, а не выводим)
+$newComments = array_filter($allMessage, function($item){ //фильтруем по дате
     $dataComment = $item['date'];
     $dataStatus  = $item['status'];
     $dataComment = strtotime($dataComment);
@@ -55,11 +56,6 @@ $newComments = array_map(function($item){
     return $item;
 }, $newComments);
 
-if($authGateway->isAdmin()){
-    $newComments = array_map(function($item){
-        $item['text']; // .= "'<input type=\"submit\" id = \"  $item['id'], \" value= \"X\" method = \"POST\">";
-        return $item;
-    }, $newComments);
-}
+
 
 include APP_PATH . "/Templates/template.phtml"; 
