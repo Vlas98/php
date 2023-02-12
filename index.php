@@ -1,5 +1,8 @@
 <?php    
 
+error_reporting(E_ALL);
+ini_set('display_errors', '1');
+
 define('APP_PATH', __DIR__);// глобальная константа пути к корню директории (Для чего)
 
 
@@ -8,7 +11,7 @@ include_once APP_PATH . '/src/AuthGateway.php'; // подключаем авто
 $authGateway = new AuthGateway($_COOKIE); //  создаем новый экземпляр клааса авторизации
 
 // routing
-$routingPath = $_SERVER['PATH_INFO'];
+$routingPath = $_SERVER['PATH_INFO'] ?? '';
 
 if($routingPath === '/logout')
 {

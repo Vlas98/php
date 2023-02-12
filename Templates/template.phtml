@@ -23,7 +23,7 @@
                 <?= $item['author']?> :
                 <?= $item['text']?>
                 <?php if($authGateway->isAdmin()){ ?>
-                <a><button href ="http://localhost:3000/delete?id=<?php echo $item['id'];?>">X</button></a>
+                <a href ="http://localhost:3000/delete?id=<?php echo $item['id'];?>">X</a>
                 <?php } ?>
              </P>   
         <?php } ?>

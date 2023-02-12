@@ -44,6 +44,12 @@ abstract class JSONable implements iJSONable //создаем абстрактн
 
         return count($this->getData());
     }
+
+    public function saveToFile(array $array):void
+    {
+      $json = json_encode($array);
+      file_put_contents($this->getFile(), $json);
+    }
  
     protected function getData(): array
     {
