@@ -56,7 +56,7 @@ abstract class JSONable implements iJSONable //создаем абстрактн
         //  возвращает содержимое json файла или массив
         // читаем файл и записываем содержимое в переменную
         $jsonContent = file_get_contents($this->getFile());
-        return json_decode($jsonContent, true);
+        return json_decode($jsonContent, true) ?? [];
     }
 
 }

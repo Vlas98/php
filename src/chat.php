@@ -33,11 +33,6 @@ $newComments = array_filter($allMessage, function($item){ //фильтруем �
 //$newComments = [['25.02.2202 04:33:22', 'log', 'afalkjfk']];
 $newComments = array_filter($newComments, function(array $item) use ($authGateway) :bool
 {
-    if($item['status'] === 'deleted')
-    {
-        $item['text'] = 'Deleted';
-    }
-
     if($item['author'] === $authGateway->getUser()['login']){
         return true;
     }
