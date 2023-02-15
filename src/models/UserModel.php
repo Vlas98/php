@@ -11,4 +11,19 @@ class UserModel extends JSONable // копируем атрибуты  клас�
         return APP_PATH . '\src\data\users.json';
     }
 
+    public function ban()
+    {
+        $allUsers= $this->getData();
+        $login = $_SERVER['QUERY_STRING'];
+
+        $allUsers = array_map(function($item) use ($login) {
+            if($item['login'] === $login){ 
+                $item['role'] = 'banned';
+            }
+            return $item;
+        }, $allUsers);
+        $this->saveToFile($allUsers);
+        header('location: /user=?' . $login);
+    }
+
 }

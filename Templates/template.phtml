@@ -20,10 +20,10 @@
 
          <?php foreach($newComments as $item){ ?>
                 <p><?=$item['date']?> 
-                <?= $item['author']?> :
+                <a href= "/user=?<?php echo $item['author']?>"><?php echo $item['author']?></a> :
                 <?= $item['text']?>
                 <?php if($authGateway->isAdmin()){ ?>
-                <a href ="http://localhost:3000/delete?id=<?php echo $item['id'];?>">X</a>
+                <a href ="/delete?id=<?php echo $item['id'];?>">X</a>
                 <?php } ?>
              </P>   
         <?php } ?>

@@ -1,0 +1,18 @@
+<!DOCTYPE html> 
+<html>
+    <head>
+        <title>
+            <?php echo $_SERVER['QUERY_STRING']; ?>
+        </title>
+    </head>
+    <body>
+        <p> <a href="/" > <button> Назад </button></a>
+        <p>Имя: <?php echo $_SERVER['QUERY_STRING']; ?></p>
+        <p>Роль: <?php echo $user['role'] ?></p>
+        <p> О себе: <?php echo $user['about']?></p>
+        <p><?php if($authGateway->isAdmin()){ ?>
+            <a href="ban?<?php echo $_SERVER['QUERY_STRING']?>"><button> BAN</button></a>
+            <?php } ?> 
+
+    </body>
+</html>

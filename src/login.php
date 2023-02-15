@@ -10,7 +10,7 @@ if( !empty($_POST['user'])){
     $foundedUser = $userModel->find('login', $userName);
     
     if($foundedUser === null){
-        $newUser = ["login" =>$_POST['user'], "password" => $hashPassword, "role" =>'user'];
+        $newUser = ["login" =>$_POST['user'], "password" => $hashPassword, "role" =>'user', "about"=>""];
         $userModel->add($newUser);
         $authGateway->auth($userName);
     }else{

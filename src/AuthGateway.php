@@ -8,7 +8,7 @@ class AuthGateway{
     private array|null $user = null;
     private UserModel|null $_userModel = null;
 
-    public function __construct(array $cookie){ //конструкор класса (??) узнать про приватность массива
+    public function __construct(array $cookie){ //конструкор класса 
         if(isset($cookie['user'])){ //если в куках хранится имя пользователя
             // [login=> string, password =>string...]
             $this->user = $this->getUsersModel()->find('login', $cookie['user']); //запрашиваем информацию(массив) информацтт о пользователе, отправляя имя пользователя
