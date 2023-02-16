@@ -9,7 +9,12 @@
         <p> <a href="/" > <button> Назад </button></a>
         <p>Имя: <?php echo $_SERVER['QUERY_STRING']; ?></p>
         <p>Роль: <?php echo $user['role'] ?></p>
-        <p> О себе: <?php echo $user['about']?></p>
+        <p><form action="" method="POST"> О себе: 
+            <?php if($_SERVER['QUERY_STRING']=== $authGateway->getUser()['login']){ ?>
+                <input  type = "text" name = "about" value="<?php echo $user['about'] ?>">
+              <button> Edit </button> 
+
+            <?php } else{echo $user['about'];} ?></form></p>
         <p><?php if($authGateway->isAdmin()){ ?>
             <a href="ban?<?php echo $_SERVER['QUERY_STRING']?>"><button> BAN</button></a>
             <?php } ?> 

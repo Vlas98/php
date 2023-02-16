@@ -13,7 +13,7 @@ class UserModel extends JSONable // копируем атрибуты  клас�
 
     public function ban()
     {
-        $allUsers= $this->getData();
+        $allUsers = $this->getData();
         $login = $_SERVER['QUERY_STRING'];
 
         $allUsers = array_map(function($item) use ($login) {
@@ -24,6 +24,21 @@ class UserModel extends JSONable // копируем атрибуты  клас�
         }, $allUsers);
         $this->saveToFile($allUsers);
         header('location: /user=?' . $login);
+    }
+
+    public function editInfo($editInfo, $login)
+    {
+        $allUsers = $this->getData();
+
+        $allUsers = array_map(function($item) use ($editInfo, $login){
+            if($item['login']=== $login){
+                $item['about'] = $editInfo;
+            }
+            return $item;
+        }, $allUsers);
+        $this->saveToFile($allUsers);
+        header('location: /user=?' . $login);
+
     }
 
 }

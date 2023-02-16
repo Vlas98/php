@@ -22,7 +22,7 @@ if($routingPath === '/logout')
     include APP_PATH . "/src/deleteMessage.php";
 }elseif($routingPath === '/user='){
     include APP_PATH . '/src/profile.php';
-}elseif($routingPath ==='/ban'){ //добавить файл бана
+}elseif($routingPath ==='/ban'){ //бан
     $userModel->ban();
 }else{
     if($authGateway->isAuth()){// проверяем на авторизацию

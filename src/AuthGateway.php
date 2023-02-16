@@ -45,7 +45,7 @@ class AuthGateway{
         return $this->getUser()['role'] === 'admin';
     }
  
-    private function getUsersModel(): UserModel //приватная функция, которая возвращает класс, который содержит информацию о пользователе (пользователях)
+    private function getUsersModel(): UserModel //приватная функция, которая возвращает класс, который содержит информацию о пользователях
     {
         if($this->_userModel === null){ // если есть информация о пользователе
             $this->_userModel = new UserModel; // создаем новый экземпляр класса
